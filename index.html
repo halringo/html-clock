@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@700&display=swap" rel="stylesheet">
+<title>時計</title>
+<style>
+html, body {
+  height: 100%;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+}
+
+.clock {
+  align-items: center;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  flex-wrap: nowrap;
+  font-family: 'BIZ UDPGothic', sans-serif;
+  font-size: 18vw;
+  height: 100%;
+  justify-content: center;
+}
+
+.hour, .minute, .second, .colon {
+  overflow: clip;
+  text-align: center;
+}
+
+.hour, .minute, .second {
+  flex-basis: 15vw;
+}
+
+.colon {
+  flex-basis: 5vw;
+}
+</style>
+</head>
+<body>
+<div class="clock">
+  <div class="hour" id="hour1">0</div>
+  <div class="hour" id="hour2">0</div>
+  <div class="colon">:</div>
+  <div class="minute" id="minute1">0</div>
+  <div class="minute" id="minute2">0</div>
+  <div class="colon">:</div>
+  <div class="second" id="second1">0</div>
+  <div class="second" id="second2">0</div>
+</div>
+</body>
+<script>
+const hour1 = document.getElementById("hour1");
+const hour2 = document.getElementById("hour2");
+const minute1 = document.getElementById("minute1");
+const minute2 = document.getElementById("minute2");
+const second1 = document.getElementById("second1");
+const second2 = document.getElementById("second2");
+
+let previousTime = new Date(0);
+
+function step() {
+  let now = new Date();
+
+  if (previousTime.getHours() != now.getHours()) {
+    hour1.innerText = Math.trunc(now.getHours() / 10);
+    hour2.innerText = now.getHours() % 10;
+  }
+  if (previousTime.getMinutes() != now.getMinutes()) {
+    minute1.innerText = Math.trunc(now.getMinutes() / 10);
+    minute2.innerText = now.getMinutes() % 10;
+  }
+  if (previousTime.getSeconds() != now.getSeconds()) {
+    second1.innerText = Math.trunc(now.getSeconds() / 10);
+    second2.innerText = now.getSeconds() % 10;
+  }
+
+  // previousTime = new Date(now);
+  previousTime = now;
+
+  window.requestAnimationFrame(step);
+}
+
+window.requestAnimationFrame(step);
+</script>
+</html>
