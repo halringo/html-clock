@@ -9,6 +9,7 @@
 <title>時計</title>
 <style>
 html, body {
+  background-color: #000;
   height: 100%;
   line-height: 1;
   margin: 0;
@@ -17,7 +18,6 @@ html, body {
 
 .clock {
   align-items: center;
-  background-color: #000;
   color: #fff;
   display: flex;
   flex-wrap: nowrap;
@@ -61,7 +61,7 @@ const minute2 = document.getElementById("minute2");
 const second1 = document.getElementById("second1");
 const second2 = document.getElementById("second2");
 
-let previousTime = new Date(0);
+let previousTime = new Date(2000, 0, 1, 0, 0, 0);
 
 function step() {
   let now = new Date();
